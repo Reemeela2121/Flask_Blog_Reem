@@ -1,11 +1,13 @@
 import os
+from sqlite3 import dbapi2
 from flask import Flask, render_template, send_from_directory
 from dotenv import load_dotenv
 from flask.helpers import url_for
 
 load_dotenv()
 app = Flask(__name__)
-
+app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+dbapi2.init_app(app)
 
 @app.route('/')
 def index():

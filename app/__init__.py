@@ -1,12 +1,11 @@
 import os
-from flask import Flask, render_template, send_from_directory
 from dotenv import load_dotenv
-from flask.helpers import url_for
 from . import db
 
-from werkzeug.security import check_password_hash, generate_password_hash
-from werkzeug.wrappers import Request
 from app.db import get_db
+
+from flask import Flask, render_template, request
+from werkzeug.security import check_password_hash, generate_password_hash
 
 load_dotenv()
 app = Flask(__name__)
@@ -54,8 +53,9 @@ def register():
         else:
             return error, 418
 
-    ## TODO: Return a restister page
+    ## TODO: Return a register page
     return "Register Page not yet implemented", 501
+
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
